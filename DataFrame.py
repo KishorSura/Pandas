@@ -3,13 +3,13 @@
 
 # In[56]:
 
-
+#importing pandas in jupyter notebook
 import pandas as pd
 
 
 # In[98]:
 
-
+#reading the csv file
 df=pd.read_csv("C:/Users/DELL/Desktop/Book1.csv")
 
 
@@ -21,7 +21,7 @@ df
 
 # In[10]:
 
-
+#converting dictionary into DataFrame 
 weather_data={
     "day":["01-01-2017","01-02-2017","01-03-2017","01-04-2017","01-05-2017","01-06-2017"],
     "temperature":[32,35,28,24,32,31],
@@ -35,106 +35,106 @@ df1
 # In[32]:
 
 
-#first two rows
+#printing first two rows by using head()
 df.head(2)
 
 
 # In[33]:
 
 
-#last row 
+#printing last row by using tail()
 df.tail(1)
 
 
 # In[34]:
 
 
-#slicing 
+#slicing,I wanted to print selected rows 
 df[2:4]
 
 
 # In[36]:
 
 
-#column names 
+#to print column names 
 df.columns
 
 
 # In[38]:
 
-
+#prints day column where dot is used.
 df.day
 
 
 # In[40]:
 
-
+#prints two columns day and event
 df[["day","event"]]
 
 
 # In[41]:
 
-
+#prints the column type
 type(df["event"])
 
 
 # In[43]:
 
-
+#prints event,day,temperature column
 df[["event","day","temperature"]]
 
 
 # In[44]:
 
-
+# prints the max temerature
 df["temperature"].max()
 
 
 # In[45]:
 
-
+#mean temperature
 df["temperature"].mean()
 
 
 # In[46]:
 
-
+#prints std of temperature
 df["temperature"].std()
 
 
 # In[47]:
 
-
+#decribes the table
 df.describe()
 
 
 # In[48]:
 
-
+#prints temperature greater than 32
 df[df.temperature>32]
 
 
 # In[50]:
 
-
+#prints max temperature
 df[df.temperature==df["temperature"].max()]
 
 
 # In[51]:
 
-
+#index range
 df.index
 
 
 # In[52]:
 
-
+#index is changed to day values
 df.set_index("day")
 
 
 # In[58]:
 
-
+#tuple into dataframe
 weather=[
     ("01-01-2017",32,6,"Rain"),
     ("01-02-2017",35,7,"Sunny"),
@@ -151,7 +151,7 @@ df
 
 # In[61]:
 
-
+#dictionary to dataframe
 weather=(
 {"day":"01-01-2017","temperature":32,"windspeed":6,"event":'Rain'},
  {"day":"01-02-2017","temperature":35,"windspeed":7,"event":'Sunny'},
@@ -222,14 +222,14 @@ df2
 
 # In[96]:
 
-
+#filling the null values with 0
 new_df=df2.fillna(0)
 new_df
 
 
 # In[100]:
 
-
+#filling NaN values with 0 and no event 
 new_df=df2.fillna(
 { "temperature":0,
 "windspeed":0,
@@ -239,49 +239,49 @@ new_df
 
 # In[102]:
 
-
+#forward filling the values to NaN values
 new_df=df2.fillna(method="ffill")
 new_df
 
 
 # In[103]:
 
-
+#backward illing
 new_df=df2.fillna(method="bfill")
 new_df
 
 
 # In[105]:
 
-
+#forward filling limited to 1
 new_df=df2.fillna(method="ffill",limit=1)
 new_df
 
 
 # In[106]:
 
-
+#backward filling in columns
 new_df=df2.fillna(method="bfill",axis="columns")
 new_df
 
 
 # In[108]:
 
-
+#filling time Interpolating values in NaN values
 newdf=df2.interpolate(method="time")
 newdf
 
 
 # In[109]:
 
-
+#droppinfg null values
 newdf=df2.dropna() 
 newdf
 
 
 # In[110]:
 
-
+# dropping the row where all the columns are NaN
 newdf=df2.dropna(how="all")
 newdf
 
@@ -295,23 +295,13 @@ newdf
 
 # In[120]:
 
-
+#Adding the date and reindexing
 dt=pd.date_range("01-01-2017","01-11-2017")
 idx=pd.DatetimeIndex(dt)
 df=df2.reindex(idx)
 df
 
 
-# In[121]:
-
-
-dt=pd.date_range("1-1-2017","1-11-2017")
-idx=pd.DatetimeIndex(dt)
-df=df2.reindex(idx)
-df
-
-
-# In[ ]:
 
 
 
